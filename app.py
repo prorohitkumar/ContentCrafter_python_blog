@@ -46,7 +46,7 @@ def blog():
     keywords = request.form['keywords']
 
     prompt = f"""I aim to craft a blog titled {input_text} with some hashtags incorporating these precise {keywords}. 
-    The blog will span {no_words} words and cater to {blog_style} level readers, make sure not to mention words counting in response.
+    The blog will span {no_words} words and cater to {blog_style} level readers, make sure not to mention number of words counting in response.
             """
 
     response = model.generate_content(prompt, safety_settings={
