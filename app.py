@@ -38,7 +38,7 @@ def hello_world():
     return "Hii"
 
 
-@app.route('https://contentcrafter-python-blog-1.onrender.com/blog', methods=['POST'])
+@app.route('/blog', methods=['POST'])
 def blog():
     input_text = request.form['input_text']
     no_words = request.form['no_words']
