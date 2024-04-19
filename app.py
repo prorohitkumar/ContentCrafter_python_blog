@@ -80,7 +80,7 @@ def postToBlog():
         "title": input_text
     }
     # try:
-        insert = service.posts().insert(blogId='866940012323373450', body=payload).execute()
+    insert = service.posts().insert(blogId='866940012323373450', body=payload).execute()
 
         return insert
     # except Exception as e:
@@ -100,5 +100,5 @@ def authorize_credentials():
 
 
 
-#if __name__ == '__main__':
- #   app.run(debug=True, host="0.0.0.0", port=5001)
+if __name__ == '__main__':
+   app.run(debug=True, host="0.0.0.0", port=5001)
