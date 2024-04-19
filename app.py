@@ -86,17 +86,37 @@ def postToBlog():
     # except Exception as e:
     #     return jsonify({'status': 'error', 'message': str(e)})
 def authorize_credentials():
-    CLIENT_SECRET = 'credentials.json'
+    # Define the path to the client secrets file and the desired scope
+    CLIENT_SECRET_FILE = 'credentials.json'
     SCOPE = 'https://www.googleapis.com/auth/blogger'
-    STORAGE = Storage('creds.storage')
-    # Fetch credentials from storage
-    credentials = STORAGE.get()
-    # If the credentials doesn't exist in the storage location then run the flow
+    
+    # Define the storage file path
+    STORAGE_FILE = 'creds.storage'
+
+    # Create a Storage object to store the credentials
+    storage = Storage(STORAGE_FILE)
+    
+    # Attempt to fetch credentials from storage
+    credentials = storage.get()
+
+    # If credentials don't exist or are invalid, run the flow to obtain new credentials
     if credentials is None or credentials.invalid:
-        flow = flow_from_clientsecrets(CLIENT_SECRET, scope=SCOPE)
-        http = httplib2.Http()
-        credentials = run_flow(flow, STORAGE, http=http)
+        try:
+            # Load client secrets from file
+            with open(CLIENT_SECRET_FILE, 'r') as client_secret_file:
+                client_secrets = json.load(client_secret_file)
+            
+            # Create flow from client secrets and scope
+            flow = flow_from_clientsecrets(CLIENT_SECRET_FILE, scope=SCOPE)
+
+            # Run the flow to obtain new credentials
+            credentials = run_flow(flow, storage, http=httplib2.Http())
+        except Exception as e:
+            print(f"Error obtaining credentials: {e}")
+            credentials = None
+
     return credentials
+
 
 
 
