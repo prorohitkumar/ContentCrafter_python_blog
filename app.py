@@ -5,8 +5,6 @@ import os
 import google.generativeai as genai
 from flask_cors import CORS
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-import aspose.words as aw
-from Markdown2docx import Markdown2docx
 import httplib2
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
