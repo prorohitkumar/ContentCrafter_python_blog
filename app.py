@@ -82,7 +82,7 @@ def postToBlog():
     # try:
     insert = service.posts().insert(blogId='866940012323373450', body=payload).execute()
 
-        return insert
+    return insert
     # except Exception as e:
     #     return jsonify({'status': 'error', 'message': str(e)})
 def authorize_credentials():
