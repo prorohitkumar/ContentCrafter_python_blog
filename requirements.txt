@@ -4,6 +4,7 @@ google-generativeai==0.4.1
 Werkzeug== 2.2.2
 gunicorn
 Markdown2docx
+Markdown
 httplib2
 google-api-python-client
 oauth2client
