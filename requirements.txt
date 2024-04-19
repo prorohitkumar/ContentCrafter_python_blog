@@ -4,7 +4,7 @@ google-generativeai==0.4.1
 Werkzeug== 2.2.2
 gunicorn
 markdown==3.3.4
-json==2.0.9
+json
 google==3.0.0
 aspose-words==22.3.0
 Markdown2docx==1.0.0
