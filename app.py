@@ -79,12 +79,12 @@ def postToBlog():
         "content": content,
         "title": input_text
     }
-    try:
+    # try:
         insert = service.posts().insert(blogId='866940012323373450', body=payload).execute()
 
         return insert
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)})
+    # except Exception as e:
+    #     return jsonify({'status': 'error', 'message': str(e)})
 def authorize_credentials():
     CLIENT_SECRET = 'credentials.json'
     SCOPE = 'https://www.googleapis.com/auth/blogger'
