@@ -87,11 +87,11 @@ def postToBlog():
     #     return jsonify({'status': 'error', 'message': str(e)})
 def authorize_credentials():
     # Define the path to the client secrets file and the desired scope
-    CLIENT_SECRET_FILE = 'credentials.json'
+    CLIENT_SECRET_FILE = './credentials.json'
     SCOPE = 'https://www.googleapis.com/auth/blogger'
     
     # Define the storage file path
-    STORAGE_FILE = 'creds.storage'
+    STORAGE_FILE = './creds.storage'
 
     # Create a Storage object to store the credentials
     storage = Storage(STORAGE_FILE)
