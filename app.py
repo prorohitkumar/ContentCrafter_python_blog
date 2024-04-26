@@ -32,10 +32,14 @@ config = {
     'temperature': 0,
     'top_k': 20,
     'top_p': 0.9,
-    'max_output_tokens': 2048
+    'max_output_tokens':  1048576 
 }
 
-model = genai.GenerativeModel(model_name="gemini-pro")
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-pro-latest",
+    generation_config= config,
+
+)
 
 
 
