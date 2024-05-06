@@ -55,7 +55,7 @@ input_text = ""
 @app.route('/', methods=['GET'])
 def hello_world():
     logging.info(f"Testing endpoints")
-    return "Hii"
+    return "Hii, Have a great day"
 
 
 @app.route('/blog', methods=['POST'])
