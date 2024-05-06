@@ -11,6 +11,12 @@ from oauth2client.file import Storage
 from oauth2client.tools import run_flow
 from googleapiclient import discovery
 
+import logging
+
+# Configure the logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
+
 # Initializing the App and Gemini API: We initialize our Flask app and load the Gemini API client.
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -48,6 +54,7 @@ input_text = ""
 # Defining Routes: We define two routes - one for the home page and another for handling chat messages.
 @app.route('/', methods=['GET'])
 def hello_world():
+    logging.info(f"Testing endpoints")
     return "Hii"
 
 
@@ -58,6 +65,7 @@ def blog():
     no_words = request.form['no_words']
     blog_style = request.form['blog_style']
     keywords = request.form['keywords']
+    logging.info(f"Generating a blog with input text:{input_text} and incorporated with keywords: {keywords} with {no_words} for {blog_style}")
     prompt = f"""Act as a blog post writer. You need to write a blog post on {input_text} with some hashtags 
     incorporating these {keywords}.Ensure that the blog post is of around {no_words} words.
     The blog post should address blog {blog_style} level readers.
@@ -84,6 +92,7 @@ def postToBlog():
         "title": input_text
     }
     # try:
+    logging.info(f"Posting a blog")
     insert = service.posts().insert(blogId='866940012323373450', body=payload).execute()
 
     return insert
@@ -106,6 +115,7 @@ def authorize_credentials():
     # If credentials don't exist or are invalid, run the flow to obtain new credentials
     if credentials is None or credentials.invalid:
         try:
+            logging.info(f"Check for google credentials")
             # Load client secrets from file
             with open(CLIENT_SECRET_FILE, 'r') as client_secret_file:
                 client_secrets = json.load(client_secret_file)
@@ -116,6 +126,7 @@ def authorize_credentials():
             # Run the flow to obtain new credentials
             credentials = run_flow(flow, storage, http=httplib2.Http())
         except Exception as e:
+            logging.error(f"Error while obtaining credentials: {e}")
             print(f"Error obtaining credentials: {e}")
             credentials = None
 
