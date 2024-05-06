@@ -131,9 +131,8 @@ def authorize_credentials():
             credentials = None
 
     return credentials
-
-
-
+  
+# Finally, we'll add the entrypoint for the file which runs the Flask development server.
 
 # if __name__ == '__main__':
-#    app.run(debug=True, host="0.0.0.0", port=5001)
+#     app.run(debug=True, host="0.0.0.0")
